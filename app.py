@@ -11,7 +11,7 @@ def get_db_connection():
         host = "10.2.2.245",
         user = "Max@%",
         password = "AX-d120",
-        database = "",
+        database = "arsdatabase",
         charset = "utf8mb4",
         collation = "utf8mb4_general_ci"
     )

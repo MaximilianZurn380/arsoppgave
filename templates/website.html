@@ -9,14 +9,14 @@
     <h1>Welcome</h1>
     <a href="{{ url_for('logout') }}">Log out</a>
     <div id="topbar">
-        <div id="mainmenu" style="display: none;">
+        <div id="mainmenu">
 
             <p>Type in a color for the background</p>
             <input type="text" id="typebox">
             <button id="choose">Accept</button>
             <br>
             <br>
-            <div id="hidemenu" style="display: none;">
+            <div id="hidemenu">
                 <p>Choose text type</p>
                 <select id="texttype">
                     <option value="h1">Title</option>
@@ -32,5 +32,7 @@
             <button id="togglemenu">Make a new line</button>
         </div>
     </div>
+
+    <script src="/static/script.js"></script>
 </body>
 </html>
