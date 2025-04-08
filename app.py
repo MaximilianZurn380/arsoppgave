@@ -1,5 +1,5 @@
 import mysql.connector
-from flask import Flask, request, render_template, session
+from flask import Flask, request, render_template, session, redirect, url_for
 
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app.secret_key = 'SCRETKAY'
 
 def get_db_connection():
     return mysql.connector.connect(
-        host = "10.2.2.245",
+        host = "10.2.3.161",
         user = "Max@%",
         password = "AX-d120",
         database = "arsdatabase",
@@ -43,10 +43,6 @@ def login():
     else:
         return render_template("index.html")
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.route("/register", methods = ["GET", "POST"])
 def register():
 
@@ -58,12 +54,12 @@ def register():
         db = get_db_connection()
         cursor = db.cursor()
 
-        cursor.execute("SELECT * FROM customers WHERE email = %s", (email,))
+        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
         if cursor.fetchone():
             return "email alredy registered"
 
         cursor.execute(
-            "INSERT INTO customers (email, password, full_name) "
+            "INSERT INTO users (email, password, full_name) "
             "VALUES (%s, %s, %s)",
             (email, password, user_name)
         )
@@ -73,8 +69,8 @@ def register():
 
         session["email"] = email
         return redirect(url_for("store"))
-    return render_template(register.html)
+    return render_template("register.html")
 
 
-    if __name__ == "__main__":
-        app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
