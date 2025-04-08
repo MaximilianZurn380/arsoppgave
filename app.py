@@ -59,7 +59,7 @@ def register():
             return "email alredy registered"
 
         cursor.execute(
-            "INSERT INTO users (email, password, full_name) "
+            "INSERT INTO users (email, password, user_name) "
             "VALUES (%s, %s, %s)",
             (email, password, user_name)
         )
