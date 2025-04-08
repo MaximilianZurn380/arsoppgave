@@ -36,7 +36,7 @@ def login():
         if user:
             session.permanent = True
             session["email"] = email
-            return redirect(url_for("mainpage"))
+            return redirect(url_for("website"))
         else:
             session["email"] = email
             return "Wrong email or password"
@@ -68,8 +68,15 @@ def register():
         db.close()
 
         session["email"] = email
-        return redirect(url_for("store"))
+        return redirect(url_for("website"))
     return render_template("register.html")
+
+@app.route("/website", methods = ["GET", "POST"])
+def website():
+    if "email" in session:
+        return render_template("website.html")
+    else:
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
