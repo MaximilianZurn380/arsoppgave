@@ -29,10 +29,59 @@ document.getElementById("addtext").addEventListener("click", function ()
 {
     let userText = textAdd.value;
     let selectedType = document.getElementById("texttype").value;
-    if (userText != "") {
+    if (userText != "")
+    {
         let newText = document.createElement(selectedType);
         newText.textContent = userText;
         container.appendChild(newText);
         textAdd.value = "";
+    }
+});
+
+document.getElementById("opencolor").addEventListener("click", function ()
+{
+    let colorMenu = document.getElementById("colormenu");
+    if (colorMenu.style.display === "none")
+    {
+        colorMenu.style.display = "block";
+        document.getElementById("opencolor").textContent = "Close color menu";
+    } else {
+        colorMenu.style.display = "none";
+        document.getElementById("opencolor").textContent = "Change color";
+    }
+});
+
+document.getElementById("changecolor").addEventListener("click", function ()
+{
+    let chosenColor = document.getElementById("textcolor").value;
+    let textElements = document.getElementById("container").children;
+
+    for (let i = 0; i < textElements.length; i++)
+    {
+        textElements[i].style.color = chosenColor;
+    }
+});
+
+document.getElementById("openfont").addEventListener("click", function ()
+{
+    let fontMenu = document.getElementById("fontmenu");
+    if (fontMenu.style.display === "none")
+    {
+        fontMenu.style.display = "block";
+        document.getElementById("openfont").textContent = "Close font menu";
+    } else {
+        fontMenu.style.display = "none";
+        document.getElementById("openfont").textContent = "Font menu";
+    }
+});
+
+document.getElementById("changefont").addEventListener("click", function ()
+{
+    let selectedFont = document.getElementById("fontselect").value;
+    let textElements = document.getElementById("container").children;
+
+    for (let i = 0; i < textElements.length; i++)
+    {
+        textElements[i].style.fontFamily = selectedFont;
     }
 });
