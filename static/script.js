@@ -25,15 +25,14 @@ toggleMenu.addEventListener("click", function ()
     }
 });
 
-document.getElementById("addText").addEventListener("click", function ()
+document.getElementById("addtext").addEventListener("click", function ()
 {
     let userText = textAdd.value;
     let selectedType = document.getElementById("texttype").value;
-    if (userText != "")
-    {
+    if (userText != "") {
         let newText = document.createElement(selectedType);
         newText.textContent = userText;
         container.appendChild(newText);
         textAdd.value = "";
     }
-})
+});
