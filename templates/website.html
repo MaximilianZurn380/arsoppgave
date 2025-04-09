@@ -31,9 +31,37 @@
             <br>
             <button id="togglemenu">Make a new line</button>
         </div>
-    </div>
-    <div id="container"></div>
+        <div id="textmenu" style="display: none;">
+            <br>
+            <div id="colormenu" style="display: none;">
+                <p>Type in the color for your text</p>
+                <input type="text" id="textcolor">
+                <button id="changecolor">Change color</button>
+            </div>
+            <br>
+            <button id="opencolor">Text color</button>
+            <br>
 
+            <div id="fontmenu" style="display: none;">
+                <br>
+                <select id="fontselect">
+                    <option value="Calibri">Calibri</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Roboto">Roboto</option>
+                </select>
+                <button id="changefont">Change font</button>
+            </div>
+            <br>
+            <button id="openfont">Font menu</button>
+            <br>
+            <br>
+        </div>
+        <div id="container"></div>
+    </div>
     <script src="/static/script.js"></script>
 </body>
 </html>
