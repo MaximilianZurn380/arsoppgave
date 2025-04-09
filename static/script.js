@@ -5,7 +5,23 @@ let container = document.getElementById("container");
 let textAdd = document.getElementById("linetext");
 
 let hideMenu = document.getElementById("hidemenu");
-let toggleMenu = document.getElementById("togglemenu")
+let toggleMenu = document.getElementById("togglemenu");
+
+let configMenu = document.getElementById("textmenu");
+let changeMenu = document.getElementById("changemenu");
+
+document.getElementById("mainbutton").addEventListener("click", function ()
+{
+    let mainMenu = document.getElementById("mainmenu");
+    if (mainMenu.style.display === "none")
+    {
+        mainMenu.style.display = "block";
+        document.getElementById("mainbutton").textContent = "Close menu";
+    } else {
+        mainMenu.style.display = "none";
+        document.getElementById("mainbutton").textContent = "Open menu";
+    }
+});
 
 document.getElementById("choose").addEventListener("click", function ()
 {
@@ -22,6 +38,18 @@ toggleMenu.addEventListener("click", function ()
     } else {
         hideMenu.style.display = "none";
         toggleMenu.textContent = "Make a new line";
+    }
+});
+
+changeMenu.addEventListener("click", function ()
+{
+    if (configMenu.style.display === "none")
+    {
+        configMenu.style.display = "block";
+        changeMenu.textContent = "Close configuration menu";
+    } else {
+        configMenu.style.display = "none";
+        changeMenu.textContent = "Text configuration";
     }
 });
 
