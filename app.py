@@ -16,6 +16,7 @@ def get_db_connection():
         collation = "utf8mb4_general_ci"
     )
 
+
 @app.route("/")
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -42,6 +43,7 @@ def login():
             return "Wrong email or password"
     else:
         return render_template("index.html")
+
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
@@ -77,6 +79,11 @@ def website():
         return render_template("website.html")
     else:
         return redirect(url_for("login"))
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
