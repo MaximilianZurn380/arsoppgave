@@ -8,7 +8,7 @@ app.secret_key = 'SCRETKAY'
 
 def get_db_connection():
     return mysql.connector.connect(
-        host = "10.2.3.161",
+        host = "10.2.3.63",
         user = "Max@%",
         password = "AX-d120",
         database = "arsdatabase",
