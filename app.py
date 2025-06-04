@@ -1,5 +1,6 @@
 import mysql.connector
 from flask import Flask, request, render_template, session, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -27,14 +28,14 @@ def login():
         db = get_db_connection()
         cursor = db.cursor()
 
-        cursor.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
+        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
 
         user = cursor.fetchone()
 
         cursor.close()
         db.close()
 
-        if user:
+        if user and check_password_hash(user[2], password):
             session.permanent = True
             session["email"] = email
             return redirect(url_for("website"))
@@ -53,6 +54,8 @@ def register():
         password = request.form["password"]
         user_name = request.form["user_name"]
 
+        hashed_password = generate_password_hash(password, method='scrypt')
+
         db = get_db_connection()
         cursor = db.cursor()
 
@@ -63,7 +66,7 @@ def register():
         cursor.execute(
             "INSERT INTO users (email, password, user_name) "
             "VALUES (%s, %s, %s)",
-            (email, password, user_name)
+            (email, hashed_password, user_name)
         )
         db.commit()
         cursor.close()
@@ -79,12 +82,12 @@ def website():
         return render_template("website.html")
     else:
         return redirect(url_for("login"))
+    
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("login"))
-
 
 if __name__ == "__main__":
     app.run(debug=True)
