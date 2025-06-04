@@ -17,9 +17,12 @@ på raspberry pien:
 5. Verify the installation: `mariadb -u root -p (enter your root password)`
 
 ## oppsett av database:
-create database "navn";
-create table users (id INT AUTO_INCREMENT PRIMARY KEY, user_name VARCHAR(255), epost VARCHAR(255));
+`create database "navn";`
+
+`create table users (id INT AUTO_INCREMENT PRIMARY KEY, user_name VARCHAR(255), epost VARCHAR(255));`
 ## endre på verdier i koden (python):
+i python scriptet:
+
 `host = "10.2.3.63",`
 
 `user = "Max@%",`
