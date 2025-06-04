@@ -107,5 +107,25 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
+
+@app.route("/delete_user", methods = ["POST"])
+def delete_user():
+    if "email" not in session:
+        return redirect(url_for("login"))
+    
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    cursor.execute("DELETE FROM users WHERE email = %s", (session["email"],))
+
+    db.commit()
+
+    cursor.close()
+    db.close()
+
+    session.clear()
+
+    return redirect(url_for("login"))
+
 if __name__ == "__main__":
     app.run(debug=True)
