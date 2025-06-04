@@ -82,7 +82,25 @@ def website():
         return render_template("website.html")
     else:
         return redirect(url_for("login"))
+
+@app.route("/profile")
+def profile():
+    if "email" not in session:
+        return redirect(url_for("login"))
     
+    db = get_db_connection()
+    Cursor = db.cursor()
+
+    Cursor.execute("SELECT user_name FROM users WHERE email = %s", (session["email"],))
+
+    user = Cursor.fetchone()
+    db.close()
+    Cursor.close()
+
+    if user:
+        return render_template("profile.html", username = user[0])
+    else:
+        return "User not found"
 
 @app.route("/logout")
 def logout():
